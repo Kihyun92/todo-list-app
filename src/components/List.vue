@@ -13,62 +13,34 @@
 </template>
 
 <script type="text/javascript">
-  import eventBus from './EventBus.vue';
+import Constant from '../constant';
 
-  export default {
-    created() {
-      eventBus.$on('add-todo', this.addTodo);
-    },
-    data() {
-      return {
-        todolist: [
-          {
-            todo: "영화보기",
-            done: false
-          },
-          {
-            todo: "주말 산책",
-            done: true
-          },
-          {
-            todo: "책보기",
-            done: false
-          },
-          {
-            todo: "운동",
-            done: false
-          }
-        ]
+export default {
+  computed: {
+    todolist() {
+      return this.$store.state.todolist;
+    }
+  },
+  methods: {
+    checked(done) {
+      if (done) {
+        return {
+          checked: true
+        };
+      } else {
+        return {
+          checked: false
+        };
       }
     },
-    methods: {
-      checked(done) {
-        if (done) {
-          return {
-            checked: true
-          }
-        } else {
-          return {
-            checked: false
-          }
-        }
-      },
-      addTodo(todo) {
-        if (todo !== "") {
-          this.todolist.push({
-            todo: todo,
-            done: false
-          });
-        }
-      },
-      doneToggle(index) {
-        this.todolist[index].done = !this.todolist[index].done;
-      },
-      deleteTodo(index) {
-        this.todolist.splice(index, 1);
-      }
+    doneToggle(index) {
+      this.$store.commit(Constant.DONE_TOGGLE, {index: index});
+    },
+    deleteTodo(index) {
+      this.$store.commit(Constant.DELETE_TODO, {index: index});
     }
   }
+};
 </script>
 
 <style>
