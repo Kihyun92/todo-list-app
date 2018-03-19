@@ -33,10 +33,10 @@ export default {
         }
       }
     },
-    mapMutations([
-      Constant.DELETE_TODO,
-      Constant.DONE_TOGGLE
-    ])
+    mapMutations({
+      deleteTodo: Constant.DELETE_TODO,
+      doneToggle: Constant.DONE_TOGGLE
+    })
   )
 };
 </script>
