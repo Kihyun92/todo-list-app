@@ -12,22 +12,22 @@
 </template>
 
 <script type="text/javascript">
-import Constant from '../constant'
+import Constant from '../constant';
 
-  export default {
-    name: 'input-todo',
-    data() {
-      return {
-        todo: ""
-      }
-    },
-    methods: {
-      addTodo() {
-        this.$store.commit(Constant.ADD_TODO, {todo: this.todo});
-        this.todo = "";
-      }
+export default {
+  name: 'input-todo',
+  data() {
+    return {
+      todo: ''
+    };
+  },
+  methods: {
+    addTodo() {
+      this.$store.commit(Constant.ADD_TODO, {todo: this.todo});
+      this.todo = '';
     }
   }
+};
 </script>
 
 <style>
